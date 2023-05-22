@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+    
+    {%for message in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endfor%}
+
+    {%if current_user.is_authenticated%}
+        
+    <h1>Edit Your Post...</h1><br>
+        <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <form method="POST">
+                {{Form.hidden_tag()}}
+                {{Form.title.label(class="form-label")}} {{Form.title(class="form-control")}}<br>
+                {{Form.slug.label(class="form-label")}} {{Form.slug(class="form-control")}}<br>
+                {{Form.content.label(class="form-label")}} {{Form.content(class="form-control",rows="5")}}<br>
+                {{Form.submit(class="btn btn-secondary")}}
+            </form>
+            {{ckeditor.load()}}
+            {{ckeditor.config(name='content')}}
+        </div><br>
+        <a href="{{url_for('delete_post',id=Id)}}" class="btn btn-outline-danger btn-sm">Delete Post</a>
+        <a href="{{url_for('posts')}}" class="btn btn-outline-secondary btn-sm">Back To Blog</a>
+    {%else%}
+        <h2>Must Be Logged In...</h2>
+        <h3>Sorry, you must be logged in to access this page</h3>
+        <a href="{{url_for('login')}}" class="btn btn-outline-secondary btn-sm">Login Here</a>
+    {%endif%}
+{%endblock%}

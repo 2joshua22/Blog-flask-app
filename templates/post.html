@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+    
+    {%for message in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endfor%}
+        
+    <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+        <h2>{{Post.title}}</h2>
+        <small>{{Post.poster.username}}<br>
+        {{Post.date_posted}}</small><br><br>
+        {{Post.content|safe}}<br><br>
+        <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                {%if Post.poster.profile_pic%}
+                        <img class="img-fluid rounded-start"src="../static/images/{{current_user.profile_pic}}" width="200">
+                {%else%}
+                    <img class="img-fluid rounded-start"src="../static/images/default_profile.jpg" width="200">
+                {%endif%}
+            </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{Post.poster.name}}</h5>
+                  <p class="card-text">{{Post.poster.about_author}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div><br><br>
+    {%if current_user.id==Post.poster.id or current_user.id==Admin_id%}
+    <a href="{{url_for('edit_post',id=Post.id)}}" class="btn btn-outline-secondary btn-sm">Edit Post</a>
+    <a href="{{url_for('delete_post',id=Post.id)}}" class="btn btn-outline-danger btn-sm">Delete Post</a>
+    {%endif%}
+    <a href="{{url_for('posts')}}" class="btn btn-outline-secondary btn-sm">Back To Blog</a>
+
+{%endblock%}

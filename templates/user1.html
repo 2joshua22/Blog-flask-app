@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <p>{{L}}</p>
+
+    {%for i in L%}
+    {{i}}<br>
+    {%endfor%}
+
+    <p>{{L[0]}}</p>
+    <p>{{L[3]}}</p>
+    <p>{{L[0]+11}}</p>
+    <p>{{L[3]+"!!!"}}</p>
+
+    {%for i in L%}
+        {%if i=="a"%}
+            {{"yes found"}}<br>
+        {%else%}
+            {{"Not \"a\""}}<br>
+        {%endif%}
+    {%endfor%}
+
+{%endblock%} 

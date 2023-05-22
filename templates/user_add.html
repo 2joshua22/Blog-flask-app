@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+    
+    {%for message in get_flashed_messages()%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endfor%}
+        <h1>Register</h1><br>
+        <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+            <form method="POST">
+                {{Form.hidden_tag()}}
+                {{Form.username.label(class="form-label")}} {{Form.username(class="form-control")}}<br>
+                {{Form.name.label(class="form-label")}} {{Form.name(class="form-control")}}<br>
+                {{Form.email.label(class="form-label")}} {{Form.email(class="form-control")}}<br>
+                {{Form.about_author.label(class="form-label")}} {{Form.about_author(class="form-control",rows=5)}}<br>
+                {{Form.password_hash.label(class="form-label")}} {{Form.password_hash(class="form-control")}}<br>
+                {{Form.password_hash2.label(class="form-label")}} {{Form.password_hash2(class="form-control")}}<br>
+                {{Form.submit(class="btn btn-secondary")}}
+            </form>
+        </div>
+{%endblock%}

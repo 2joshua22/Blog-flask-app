@@ -1,0 +1,23 @@
+h1{
+    color: darkblue;
+    font-size: 60px;
+}
+
+body{
+    background-color:aliceblue;
+}
+
+#demo{
+    font-size: 30px;
+    text-align: center;
+    color: darkgreen;
+}
+
+.profile_pic{
+    position: relative;
+    left:1070px;
+    top:-270px;
+    width: 200px;
+    border: 1px solid black;
+}
+

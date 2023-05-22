@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Hello {{Name}}!!!</h1>
+
+    <h4>{{Name}} -no filter</h4>
+    <h4>{{Name|upper}} -upper filter</h4>
+    <h4>{{Name|capitalize}} -capitalize filter</h4>
+    <h4>{{Name|title}} -title filter</h4>
+
+    {{Html|safe}}
+    {{Html|striptags}}
+
+    
+{%endblock%}
+    
